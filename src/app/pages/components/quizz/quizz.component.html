@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="logo">
+    <img src="../../../../assets/images/logo.png" alt="">
+    <h3>{{ title }}</h3>
+  </div>
+  <div class="questions" *ngIf='!this.finished'>
+    <app-questions
+    [questions]=""
+    [questionSelected]="questionSelected"
+    ></app-questions>
+  </div>
+  <div class="options" *ngFor="let option of questionSelected.options">
+    <app-options *ngIf='!this.finished'
+    [optionName]="option"
+    (emitOption)="handleOptionEmit($event)"
+    ></app-options>
+  </div>
+  <div class="results" *ngIf='this.finished'>
+    <app-results
+    [answerSelected]="answerSelected"
+    ></app-results>
+  </div>
+</div>
